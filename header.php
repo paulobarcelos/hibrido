@@ -1,78 +1,112 @@
+<?php define('WP_DEBUG', true); ?>
 <!doctype html>
-<html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8">
-				
-		<?php 
-		if (is_single() || is_page()) {
-			$title = get_the_title ();
-		} else {
-			$title = "Not Found";
-		}
-		?>
-		<?php if (is_home()) { ?>
-		<title><?php bloginfo('name'); ?></title>
-		<?php } else {?>
-		<title><?php echo $title;?> - <?php bloginfo('name'); ?></title>
-		<?php } ?>
-		
-		<?php 
-		$meta;
-		if (is_home()) {
-			$loop = new WP_Query( array( 'post_type' => 'info' ) );
-			while ( $loop->have_posts() ) : $loop->the_post();
-			if(get_the_title() == 'About / Contact'){
-				$aboutID = get_the_id();
-				break;
-			}
-			endwhile;				
-			$details = simple_fields_get_post_group_values($aboutID,"Page Details", true, 1);
-			$meta = $details["Site Description"][0];
-		} elseif (is_single() || is_page()){
-			if(get_post_type() == 'info') $fields = 'Page Details';
-			if(get_post_type() == 'projects') $fields = 'Project Details';
-				
-			$details = simple_fields_get_post_group_values(get_the_ID(),$fields, true, 1);
-			$meta = $details["Description"][0];	
-		} else {
-			$hideMeta = 1;
-		}
-		?>
-		<?php if($hideMeta != 1) {?>		
-		<meta name="description" content ="<?php echo $meta;?>"/>
-		<?php } ?>
-		
-		<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory');?>/img/favicon.ico">
-		<link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory');?>/img/apple-touch-icon.png">
-		<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/css/style.css?v=2">
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>  	  	<html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>  	  	<html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<script src="<?php bloginfo('stylesheet_directory');?>/js/libs/modernizr-1.7.min.js"></script>
-		<?php wp_head(); ?>
-	</head>
-	<body>
+  	<?php 
+	if (is_single() || is_page()) {
+		$title = get_the_title ();
+	} else {
+		$title = "Página não encontrada";
+	}
+	?>
+	<?php if (is_home()) { ?>
+		<title><?php bloginfo('name'); ?></title>
+	<?php } else {?>
+		<title><?php echo $title;?> - <?php bloginfo('name'); ?></title>
+	<?php } ?>
+	
+  	<meta name="description" content="">
+  	<meta name="author" content="Paulo Barcelos">
+  	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory');?>/img/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" href="<?php bloginfo('stylesheet_directory');?>/img/apple-touch-icon-114x114-precomposed.png">	
+	
+  	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/css/style.css">
+  	
+  	<script src="<?php bloginfo('stylesheet_directory');?>/js/libs/modernizr-2.0.6.min.js"></script>
+</head>
+<?php
+	$body_class = "";
+		 if (is_home())		$body_class = "home";
+	else if (is_single() || is_page())	$body_class = "single";
+?>
+<body class="<?php echo $body_class; ?>">
 	<div id="container">
-		<header id="mainheader">
-			<h1 class="logo">
-				<a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name');?>" ><span class="visuallyhidden">Paulina Hejazi - Stylist & Designer</span></a>
-			</h1>
-		</header>
-		
-		<div id="main" role="main">
-			<div class="sidebar">
-				<?php $current_id = get_the_id(); ?>
-				<nav>
-					<ul id="posts" class="menu">
-					<?php $loop = new WP_Query( array( 'post_type' => 'projects' ) ); ?>
-					<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-						<li <?php echo ($current_id == get_the_id()) ?	 'class="current"':''; ?>><a href="<?php the_permalink(); ?>"><?php the_title();?></a></li>			
-					<?php endwhile; ?>
-					</ul>
-					<ul id="pages" class="menu">
-					<?php $loop = new WP_Query( array( 'post_type' => 'info' ) ); ?>
-					<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-						<li <?php echo ($current_id == get_the_id()) ?	 'class="current"':''; ?>><a href="<?php the_permalink(); ?>"><?php the_title();?></a></li>			
-					<?php endwhile; ?>
-					</ul>
-					<?php wp_reset_query(); ?>
-				</nav>
+		<header id="header">
+			<div class="logocontainer blue">
+				<h1 class="logo ir"><?php bloginfo('name'); ?></h1>
+				<p class="description">
+					<?php if (is_home()) :?>
+						<span><i>Somos híbridos.</i> Uma empresa de comunicação que produz cultura e uma produtora cultural que comunica.</span>
+					<?php else: ?>
+						<span><?php bloginfo('description'); ?></span>
+					<?php endif; ?>	
+				</p>
 			</div>
+			<nav id="mainnavigation">
+				<h1 class="visuallyhidden">Menu Principal</h1>
+				<ul>
+					<li>
+						<div class="red">
+						<?php if (is_home()) :?>
+							<div class="shapes">
+								<div class="a"></div>
+								<div class="b"></div>
+								<div class="c"></div>
+								<div class="d"></div>
+							</div>
+						<?php endif; ?>
+							<a href="#">Vídeo</a>
+						</div>
+					</li>
+					<li>
+						<div class="yellow">
+						<?php if (is_home()) :?>
+							<div class="shapes">
+								<div class="a"></div>
+								<div class="b"></div>
+								<div class="c"></div>
+								<div class="d"></div>
+							</div>
+						<?php endif; ?>
+							<a href="#">Vídeo</a>
+						</div>
+					</li>
+					<li>
+						<div class="green">
+						<?php if (is_home()) :?>
+							<div class="shapes">
+								<div class="a"></div>
+								<div class="b"></div>
+								<div class="c"></div>
+								<div class="d"></div>
+							</div>
+						<?php endif; ?>
+							<a href="#">Vídeo</a>
+						</div>
+					</li>
+					<li>
+						<div class="blue">
+						<?php if (is_home()) :?>
+							<div class="shapes">
+								<div class="a"></div>
+								<div class="b"></div>
+								<div class="c"></div>
+								<div class="d"></div>
+							</div>
+						<?php endif; ?>
+							<a href="#">Vídeo</a>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>

@@ -78,11 +78,25 @@ td { vertical-align: top; }
 /* ==|== primary styles =====================================================
    Author: Paulo Barcelos
    ========================================================================== */
+/* base ---------------------------------------------------------------------- */
+body {font-family: "Georgia", "Times New Roman", serif; font-weight: normal; font-style: normal; color:#999; }
+h1,
+h2,
+h3,
+h4,
+h5 { font-family: Museo-500; font-weight: normal; font-style: normal; }
 
+/* HEADER -------------------------------------------------------------------*/
+#header .logo { width: 166px; height: 29px; background: url('../img/sprites/logos.png') no-repeat -312px 0; margin: 0 0 0px 0;}
+.home #header .logocontainer {width: 375px; margin: 95px auto 0 auto;}
+.home #header .logo { width: 303px; height: 54px; background: url('../img/sprites/logos.png') no-repeat 0 0; margin: 0 auto 38px auto;}
+.home #header .red .logo { background-position: 0 -60px; }
+.home #header .yellow .logo { background-position: 0 -120px; }
+.home #header .green .logo { background-position: 0 -180px; }
+.home #header .blue .logo { background-position: 0 -240px; }
 
-
-
-
+#header .description { font-size: 15px; color: #666; margin: 2px 0 0 0;}
+.home #header .description { width: 375px; font-size: 20px; text-align: center;}
 
 
 
