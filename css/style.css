@@ -79,7 +79,7 @@ td { vertical-align: top; }
    Author: Paulo Barcelos
    ========================================================================== */
 /* base ---------------------------------------------------------------------- */
-body {font-family: "Georgia", "Times New Roman", serif; font-weight: normal; font-style: normal; color:#999; }
+body {font-family: "Georgia", "Times New Roman", serif; font-weight: normal; font-style: normal; color:#999; background-color: #ddd;}
 h1,
 h2,
 h3,
@@ -87,18 +87,68 @@ h4,
 h5 { font-family: Museo-500; font-weight: normal; font-style: normal; }
 
 /* HEADER -------------------------------------------------------------------*/
-#header .logo { width: 166px; height: 29px; background: url('../img/sprites/logos.png') no-repeat -312px 0; margin: 0 0 0px 0;}
-.home #header .logocontainer {width: 375px; margin: 95px auto 0 auto;}
-.home #header .logo { width: 303px; height: 54px; background: url('../img/sprites/logos.png') no-repeat 0 0; margin: 0 auto 38px auto;}
-.home #header .red .logo { background-position: 0 -60px; }
-.home #header .yellow .logo { background-position: 0 -120px; }
-.home #header .green .logo { background-position: 0 -180px; }
-.home #header .blue .logo { background-position: 0 -240px; }
-
+#header .logo {width: 166px; margin: 0;}
+#header .logotype { width: 166px; height: 29px; background: url('../img/sprites/logos.png') no-repeat -312px 0; margin: 0 0 0px 0;}
 #header .description { font-size: 15px; color: #666; margin: 2px 0 0 0;}
+#mainnavigation ul { list-style: none; position:relative; width: 797px; margin: 0 auto 0 auto;}
+#mainnavigation li {display: inline-block; width: 135px; height: 135px; margin: 0 30px; position:relative; background-color: #EDEBEB; border: solid 1px #ccc;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+}
+#mainnavigation li .selected {background-color: #fff;}
+#mainnavigation .link {position:absolute; top: 85px; display: block; width: 100%; text-align: center; font-family: Museo-500; font-size:17px; line-height:17px; text-decoration:none; color:#333;}
+#mainnavigation .shapes {width: 52px; height: 52px;  background: url('../img/sprites/shapes.png') no-repeat 0 0; margin: 20px auto 0 auto;}
+#mainnavigation .yellow .shapes {background-position: -962px 0;}
+#mainnavigation .red .shapes {background-position: -962px -240px;}
+#mainnavigation .green .shapes {background-position: -962px -482px;}
+#mainnavigation .blue .shapes {background-position: -962px -721px;}
+
+
+.home #header .logo {width: 375px; margin: 95px auto 0 auto;}
+.home #header .logotype { width: 303px; height: 54px; background-position: 0 0; margin: 0 auto 38px auto;}
+.home .red #header  .logotype { background-position: 0 -60px; }
+.home .yellow #header .logotype { background-position: 0 -120px; }
+.home .green #header .logotype { background-position: 0 -180px; }
+.home .blue	#header .logotype { background-position: 0 -240px; }
+
 .home #header .description { width: 375px; font-size: 20px; text-align: center;}
 
-.home #mainnavigation .shapes {}
+.home #mainnavigation ul { width: 871px; margin-top: 25px;}
+.home #mainnavigation li { width: 232px; height: 300px; margin: 0 -22px 0 0; background: none; border:none;}
+.home #mainnavigation li:last-child {margin: 0 0 0 0;}
+.home #mainnavigation .shapes {width: 232px; height: 232px; background: none;}
+.home #mainnavigation .a,
+.home #mainnavigation .b,
+.home #mainnavigation .c,
+.home #mainnavigation .d { position: absolute;  width:232px; height: 232px;  background: url('../img/sprites/shapes.png') no-repeat 0 0;
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-o-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+.home #mainnavigation .yellow .a {background-position: 0 0;}
+.home #mainnavigation .yellow .b {background-position: -242px 0;}
+.home #mainnavigation .yellow .c {background-position: -481px 0;}
+.home #mainnavigation .yellow .d {background-position: -721px 0;}
+
+.home #mainnavigation .red .a {background-position: 0 -240px;}
+.home #mainnavigation .red .b {background-position: -242px -240px;}
+.home #mainnavigation .red .c {background-position: -481px -240px;}
+.home #mainnavigation .red .d {background-position: -721px -240px;}
+
+.home #mainnavigation .green .a {background-position: 0 -482px;}
+.home #mainnavigation .green .b {background-position: -242px -482px;}
+.home #mainnavigation .green .c {background-position: -481px -482px;}
+.home #mainnavigation .green .d {background-position: -721px -482px;}
+
+.home #mainnavigation .blue .a {background-position: 0 -721px;}
+.home #mainnavigation .blue .b {background-position: -242px -721px;}
+.home #mainnavigation .blue .c {background-position: -481px -721px;}
+.home #mainnavigation .blue .d {background-position: -721px -721px;}
+
+.home #mainnavigation .link {top: 115px;  font-size:27px; line-height:27px; color:#fff;}
 
 
 

@@ -8,6 +8,7 @@
 
 
   	<!-- scripts concatenated and minified via build script -->
+  	<script defer src="<?php bloginfo('stylesheet_directory');?>/js/mylibs/RequestAnimationFrame.js"></script>
   	<script defer src="<?php bloginfo('stylesheet_directory');?>/js/plugins.js"></script>
   	<script defer src="<?php bloginfo('stylesheet_directory');?>/js/script.js"></script>
   	<!-- end scripts -->

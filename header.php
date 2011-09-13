@@ -40,10 +40,10 @@
 	else if (is_single() || is_page())	$body_class = "single";
 ?>
 <body class="<?php echo $body_class; ?>">
-	<div id="container">
+	<div id="container" class="red">
 		<header id="header">
-			<div class="logocontainer blue">
-				<h1 class="logo ir"><?php bloginfo('name'); ?></h1>
+			<div class="logo">
+				<h1 class="logotype ir"><?php bloginfo('name'); ?></h1>
 				<p class="description">
 					<?php if (is_home()) :?>
 						<span><i>Somos híbridos.</i> Uma empresa de comunicação que produz cultura e uma produtora cultural que comunica.</span>
@@ -55,57 +55,49 @@
 			<nav id="mainnavigation">
 				<h1 class="visuallyhidden">Menu Principal</h1>
 				<ul>
-					<li>
-						<div class="red">
-						<?php if (is_home()) :?>
+					<li class="red">						
 							<div class="shapes">
+								<?php if (is_home()) :?>
 								<div class="a"></div>
 								<div class="b"></div>
 								<div class="c"></div>
 								<div class="d"></div>
-							</div>
-						<?php endif; ?>
-							<a href="#">Vídeo</a>
-						</div>
+								<?php endif; ?>
+							</div>						
+							<a class="link" href="#">Vídeo</a>
 					</li>
-					<li>
-						<div class="yellow">
-						<?php if (is_home()) :?>
+					<li class="yellow">
 							<div class="shapes">
+								<?php if (is_home()) :?>
 								<div class="a"></div>
 								<div class="b"></div>
 								<div class="c"></div>
 								<div class="d"></div>
+								<?php endif; ?>
 							</div>
-						<?php endif; ?>
-							<a href="#">Vídeo</a>
-						</div>
+							<a class="link" href="#">Acessoria de Imprensa</a>
 					</li>
-					<li>
-						<div class="green">
-						<?php if (is_home()) :?>
+					<li class="green">
 							<div class="shapes">
+								<?php if (is_home()) :?>
 								<div class="a"></div>
 								<div class="b"></div>
 								<div class="c"></div>
 								<div class="d"></div>
+								<?php endif; ?>
 							</div>
-						<?php endif; ?>
-							<a href="#">Vídeo</a>
-						</div>
+							<a class="link" href="#">Vídeo</a>
 					</li>
-					<li>
-						<div class="blue">
-						<?php if (is_home()) :?>
+					<li class="blue">
 							<div class="shapes">
+								<?php if (is_home()) :?>
 								<div class="a"></div>
 								<div class="b"></div>
 								<div class="c"></div>
 								<div class="d"></div>
+								<?php endif; ?>
 							</div>
-						<?php endif; ?>
-							<a href="#">Vídeo</a>
-						</div>
+							<a class="link" href="#">Acessoria de Imprensa</a>
 					</li>
 				</ul>
 			</nav>
