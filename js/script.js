@@ -6,11 +6,29 @@ var HIBRIDO = HIBRIDO || {};
 HIBRIDO.site = new function(){
 	_this = this;
 	
-	var shapes = [];
-	this.init = function(){		
-		this.animate();
+	var colors,
+		shapes,
+		body,
+		logo;
+	
+	
+	
+	this.init = function(){				
+		colors = new Object()
+		colors.none = '#DDD';	
+		colors.red = '#FFE1E1';
+		colors.yellow = '#FFFEDE';
+		colors.green = '#DFF9D9';
+		colors.blue = '#DAF4F7';
+		
+		body = $('body');
+		logo = $('#header .logotype');
+		
+		shapes = [];
+		
 		$('#mainnavigation').find('li').each(function(index) {
 			_this.deselect($(this), true);
+			
 			$(this).children('.shapes').children().each(function(index) {
 				var shape = [$(this), (Math.random()*2-1), 0];
 				shapes.push(shape);
@@ -21,35 +39,76 @@ HIBRIDO.site = new function(){
 			},function () {
 				_this.deselect($(this))
 			});
-		});		
+			
+		});
+		
+		this.animate();		
 	}
 	
 	this.deselect = function(item, imediate){
 		imediate = imediate || false;
-		var duration = (imediate)?0:300;
-		var scaleString = 'scale('+0.6+')';
-		item.children('.shapes').stop(true).animate({
-		    transform : scaleString
-		}, duration+duration);
 		
-		item.children('.link').stop(true).animate({
+		var duration = (imediate)?0:300,
+			scaleString = 'scale('+0.6+')',
+			itemShapes = item.children('.shapes');
+			itemlink = item.children('.link');
+			
+		itemShapes.stop(true).animate({
+		    transform : scaleString
+		}, duration*2);
+		
+		itemlink.stop(true).animate({
 			'color' : '#444',
-		    top : (232)		    
+		    top : (itemShapes.height())		    
 		}, duration);
+		
+		var color = colors.none;
+		
+		body.stop(true).delay(duration*2).animate({
+			'backgroundColor' : color	    
+		}, duration*3);
+		
+		logo.delay(duration*3).removeClass('yellow red green blue');
 	}
 	
 	this.select = function(item, imediate){
 		imediate = imediate || false;
-		var duration = (imediate)?0:300;
-		var scaleString = 'scale('+1+')';
-		item.children('.shapes').stop(true).animate({
+		var duration = (imediate)?0:300,
+			scaleString = 'scale('+1+')',
+			itemShapes = item.children('.shapes');
+			itemlink = item.children('.link');
+			
+		itemShapes.stop(true).animate({
 		    transform : scaleString
 		}, duration+duration);
-		
-		item.children('.link').stop(true).animate({
+
+		itemlink.stop(true).animate({
 			'color' : '#fff',
-		    top : (232/2)	    
+		    top : (itemShapes.height()*0.5 - itemlink.height()*0.5)	    
 		}, duration);
+		
+		var color,
+			colorClass = item.attr("class");
+		switch (colorClass){
+			case 'red':
+				color = colors.red;
+				break;
+			case 'yellow':
+				color = colors.yellow;
+				break;
+			case 'green':
+				color = colors.green;
+				break;
+			case 'blue':
+				color = colors.blue;
+				break;
+		}
+		
+		body.stop(true).delay(duration*2).animate({
+			'backgroundColor' : color	    
+		}, duration*3);
+		
+		logo.delay(duration*3).removeClass('yellow red green blue').addClass(colorClass);
 	}
 	
 	this.animate = function(){
