@@ -96,6 +96,8 @@ h3,
 h4,
 h5 { font-family: Museo-500; font-weight: normal; font-style: normal; }
 
+.container {width: 945px; margin: 0 auto;}
+
 
 /* HEADER -------------------------------------------------------------------*/
 .ie6 #header {text-align:center;}
@@ -189,10 +191,26 @@ h5 { font-family: Museo-500; font-weight: normal; font-style: normal; }
 #main p.text {display:block; width:420px; margin:0 auto 60px auto; text-align: center; font-size: 15px; line-height: 19px;}
 
 
-
-
-
-
+/* FOOTER -------------------------------------------------------------------*/
+#footer {width: 100%; background-color: #888; padding: 35px 0 25px 0;}
+#footer .logo {display:block; width: 106px; height: 20px;  background: url('../img/sprites/logos.png') no-repeat -312px -34px; float: left;}
+#footer .contact { float: left; margin:0 0 0 60px; font-family: Museo-300; font-size:16px; line-height:17px; color:#fff;}
+#footer .links { float: right;}
+#footer ul.links { list-style: none; margin: 0; padding: 0;}
+#footer .links li{ display: inline-block;}
+.ie6 #footer .links li,
+.ie7 #footer .links li{ display: inline;}
+#footer .blog{ padding: 4px 10px; font-family: Museo-500; font-size:17px; line-height:17px; color: #888; background-color: #fff;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+}
+#footer .blog {  margin: 4px 0 0 10px;}
+#footer .blog a { color: #888; text-decoration: none; }
+#footer .facebook a,
+#footer .twitter a  { display: block; width: 20px; height: 20px; margin: 0 10px 0 10px; background: url('../img/sprites/elements.png') no-repeat 0 0;}
+#footer .twitter a {background-position: -26px -5px;}
+#footer .facebook a {background-position: -3px -5px;}
 
 
 /* ==|== media queries ======================================================

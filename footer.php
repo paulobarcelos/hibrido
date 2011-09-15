@@ -1,6 +1,16 @@
+  	  		</div>
   	  	</article>
-  	  	<footer>
-
+  	  	<footer id="footer">
+  	  		<div class="container  clearfix">
+  	  			<span class="logo ir">hibrido.cc</span>
+  	  			<p class="contact">contato@hibrido.cc • +55 31 2512 2536<br />Rua Souza Bastos 53, Floresta - Belo Horizonte</p>
+  	  			
+  	  			<ul class="links">
+  	  				<li class="blog"><a href="#">Blog híbrido.cc</a></li>
+  	  				<li class="twitter"><a href="#" class="ir">twiiter</a></li>
+  	  				<li class="facebook"><a href="#" class="ir">facebook</a></li>
+  	  			</ul>
+  	  		</div>
   	  	</footer>
   	</div>
   	

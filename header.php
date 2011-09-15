@@ -40,8 +40,8 @@
 	else if (is_single() || is_page())	$body_class = "single";
 ?>
 <body class="<?php echo $body_class; ?>">
-	<div id="container">
-		<header id="header">
+	<header id="header">
+		<div class="container">
 			<div class="logo">
 				<h1 class="logotype ir"><?php bloginfo('name'); ?></h1>
 				<p class="description">
@@ -100,5 +100,7 @@
 					</li>
 				</ul>
 			</nav>
-		</header>
-		<article id="main" role="main">
+		</div>
+	</header>
+	<article id="main" role="main">
+		<div class="container">
