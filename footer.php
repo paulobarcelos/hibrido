@@ -1,14 +1,15 @@
+<?php $options = get_option('settings_options');?>
   	  		</div>
   	  	</article>
   	  	<footer id="footer">
   	  		<div class="container  clearfix">
-  	  			<span class="logo ir">hibrido.cc</span>
-  	  			<p class="contact">contato@hibrido.cc • +55 31 2512 2536<br />Rua Souza Bastos 53, Floresta - Belo Horizonte</p>
+  	  			<span class="logo ir"><?php echo $options['site_title']; ?></span>
+  	  			<p class="contact"><?php echo $options['contacts']; ?></p>
   	  			
   	  			<ul class="links">
-  	  				<li class="blog"><a href="#">Blog híbrido.cc</a></li>
-  	  				<li class="twitter"><a href="#" class="ir">twiiter</a></li>
-  	  				<li class="facebook"><a href="#" class="ir">facebook</a></li>
+  	  				<li class="blog"><a href="<?php echo $options['blog']; ?>">Blog <?php echo $options['site_title']; ?></a></li>
+  	  				<li class="twitter"><a href="<?php echo $options['twitter']; ?>" class="ir">Twitter</a></li>
+  	  				<li class="facebook"><a href="<?php echo $options['facebook']; ?>" class="ir">Facebook</a></li>
   	  			</ul>
   	  		</div>
   	  	</footer>
@@ -27,7 +28,7 @@
   	<!-- end scripts -->
 	
   	<script>
-  	  	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview'],['_trackPageLoadTime']];
+  	  	var _gaq=[['_setAccount','<?php echo $options['analytics']; ?>'],['_trackPageview'],['_trackPageLoadTime']];
   	  	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
   	  	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
   	  	s.parentNode.insertBefore(g,s)}(document,'script'));

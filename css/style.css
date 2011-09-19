@@ -103,7 +103,7 @@ h5 { font-family: Museo-500; font-weight: normal; font-style: normal; }
 .ie6 #header {text-align:center;}
 #header .logo {width: 166px; margin: 0;}
 #header .logotype { width: 166px; height: 29px; background: url('../img/sprites/logos.png') no-repeat -312px 0; margin: 0 0 0px 0;}
-#header .description { font-size: 15px; color: #666; margin: 2px 0 0 0;}
+#header .description { font-size: 15px; color: #666; margin: 2px 0 0 0; font-style: italic;}
 #mainnavigation ul { list-style: none; position:relative; width: 800px; margin: 0 auto 0 auto;}
 #mainnavigation li {display: inline-block; width: 135px; height: 135px; margin: 0 30px; position:relative; background-color: #EDEBEB; border: solid 1px #ccc;
 	-moz-border-radius: 15px;
@@ -113,7 +113,7 @@ h5 { font-family: Museo-500; font-weight: normal; font-style: normal; }
 .ie7 #mainnavigation li,
 .ie6 #mainnavigation li {display: inline;}
 #mainnavigation li .selected {background-color: #fff;}
-#mainnavigation .link {position:absolute; top: 85px; display: block; width: 100%; text-align: center; font-family: Museo-500; font-size:17px; line-height:17px; text-decoration:none; color:#333;}
+#mainnavigation .link {position:absolute; top: 85px; display: block; width: 100%;  text-align: center; font-family: Museo-500; font-size:17px; line-height:17px; text-decoration:none; color:#333;}
 #mainnavigation .shapes {width: 52px; height: 52px;  background: url('../img/sprites/shapes.png') no-repeat 0 0; margin: 20px auto 0 auto;}
 #mainnavigation .yellow .shapes {background-position: -962px 0;}
 #mainnavigation .red .shapes {background-position: -962px -240px;}
@@ -128,7 +128,7 @@ h5 { font-family: Museo-500; font-weight: normal; font-style: normal; }
 .home #header .logotype.green { background-position: 0 -180px; }
 .home #header .logotype.blue { background-position: 0 -240px; }
 
-.home #header .description { width: 375px; font-size: 20px; text-align: center;}
+.home #header .description { width: 375px; font-size: 20px; text-align: center; font-style: normal;}
 
 .home #mainnavigation { margin-top:25px;}
 .home #mainnavigation ul { width: 875px;}
@@ -160,7 +160,7 @@ h5 { font-family: Museo-500; font-weight: normal; font-style: normal; }
 .home #mainnavigation .blue .c {background-position: -481px -721px;}
 .home #mainnavigation .blue .d {background-position: -721px -721px;}
 
-.home #mainnavigation .link {top: 100px;  font-size:27px; line-height:27px; color:#fff;}
+.home #mainnavigation .link {top: 100px;  width: 220px; font-size:27px; line-height:27px; color:#fff;}
 
 /* HOMEPAGE -------------------------------------------------------------------*/
 #curlybrace {width: 610px; height: 30px; margin: 20px auto 20px auto;}

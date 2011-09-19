@@ -1,4 +1,5 @@
 <?php define('WP_DEBUG', true); ?>
+<?php $options = get_option('settings_options');?>
 <!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
@@ -17,13 +18,16 @@
 		$title = "Página não encontrada";
 	}
 	?>
-	<?php if (is_home()) { ?>
-		<title><?php bloginfo('name'); ?></title>
-	<?php } else {?>
-		<title><?php echo $title;?> - <?php bloginfo('name'); ?></title>
-	<?php } ?>
+	<?php if (is_home()): ?>
+		<title><?php echo $options['site_title'] ?></title>
+	<?php else:?>
+		<title><?php echo $title;?> - <?php echo $options['site_title'] ?></title>
+	<?php endif; ?>
 	
-  	<meta name="description" content="">
+	<?php if (is_home()): ?>
+		<meta name="description" content="<?php echo strip_tags($options['description']); ?>">
+	<?php else:?>
+	<?php endif; ?>
   	<meta name="author" content="Paulo Barcelos">
   	<meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -46,15 +50,21 @@
 				<h1 class="logotype ir"><?php bloginfo('name'); ?></h1>
 				<p class="description">
 					<?php if (is_home()) :?>
-						<span><i>Somos híbridos.</i> Uma empresa de comunicação que produz cultura e uma produtora cultural que comunica.</span>
+						<span><?php echo $options['description']; ?></span>
 					<?php else: ?>
-						<span><?php bloginfo('description'); ?></span>
+						<span><?php echo $options['tagline']; ?></span>
 					<?php endif; ?>	
 				</p>
 			</div>
 			<nav id="mainnavigation">
 				<ul>
-					<li class="red">						
+					<?php $loop = new WP_Query( array( 'post_type' => 'area' ) ); ?>
+					<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+					<?php
+					$area_info = simple_fields_get_post_group_values(get_the_ID(),"Area Info", true, 1);
+					$color = strtolower($area_info['Color'][0]);
+					?>
+					<li class="<?php echo $color;?>">						
 							<div class="shapes">
 								<?php if (is_home()) :?>
 								<div class="a"></div>
@@ -63,41 +73,10 @@
 								<div class="d"></div>
 								<?php endif; ?>
 							</div>						
-							<a class="link" href="#">Vídeo</a>
+							<a class="link" href="<?php the_permalink(); ?>"><?php the_title();?></a>
 					</li>
-					<li class="yellow">
-							<div class="shapes">
-								<?php if (is_home()) :?>
-								<div class="a"></div>
-								<div class="b"></div>
-								<div class="c"></div>
-								<div class="d"></div>
-								<?php endif; ?>
-							</div>
-							<a class="link" href="#">Acessoria de Imprensa</a>
-					</li>
-					<li class="green">
-							<div class="shapes">
-								<?php if (is_home()) :?>
-								<div class="a"></div>
-								<div class="b"></div>
-								<div class="c"></div>
-								<div class="d"></div>
-								<?php endif; ?>
-							</div>
-							<a class="link" href="#">Vídeo</a>
-					</li>
-					<li class="blue">
-							<div class="shapes">
-								<?php if (is_home()) :?>
-								<div class="a"></div>
-								<div class="b"></div>
-								<div class="c"></div>
-								<div class="d"></div>
-								<?php endif; ?>
-							</div>
-							<a class="link" href="#">Acessoria de Imprensa</a>
-					</li>
+					<?php endwhile; ?>
+					<?php wp_reset_query(); ?>
 				</ul>
 			</nav>
 		</div>
