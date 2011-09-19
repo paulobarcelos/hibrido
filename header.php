@@ -38,12 +38,7 @@
   	
   	<script src="<?php bloginfo('stylesheet_directory');?>/js/libs/modernizr-2.0.6.min.js"></script>
 </head>
-<?php
-	$body_class = "";
-		 if (is_home())		$body_class = "home";
-	else if (is_single() || is_page())	$body_class = "single";
-?>
-<body class="<?php echo $body_class; ?>">
+<body <?php body_class();?>">
 	<header id="header">
 		<div class="container">
 			<div class="logo">
