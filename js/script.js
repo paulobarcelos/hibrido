@@ -88,7 +88,7 @@ HIBRIDO.site = new function(){
 		}, duration);
 		
 		var color,
-			colorClass = item.attr("class");
+			colorClass = jQuery.trim(item.attr("class"));
 		switch (colorClass){
 			case 'red':
 				color = colors.red;

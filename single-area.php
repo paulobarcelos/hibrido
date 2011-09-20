@@ -1,33 +1,46 @@
 <?php get_header(); ?>
 <?php
-	$details = simple_fields_get_post_group_values(get_the_ID(),"Page Details", true, 1);
-	$description = $details["Description"][0];
-	$portrait = $details["Portrait"][0];
+	$info = simple_fields_get_post_group_values(get_the_id(),"Area Info", true, 1);
+	$color = strtolower($info['Color'][0]);
+	$metadescription = $info['Meta Description'][0];
+	$description = $info['Description'][0];
 	
-	$contactsFields = simple_fields_get_post_group_values(get_the_ID(),"Contacts", true, 1);
-	$type = $contactsFields["Type"];
-	$contacts = $contactsFields["Contact"];
-	$total_contacts = count($contacts);
+	$cases_ids =& get_children( 'post_type=case&post_parent='.get_the_ID() );
 ?>
-<div id="page" class="content">
-	<article>
-		<div class="pagecopy">
-			<h2><?php the_title();?></h2>
-			<p class="description"><?php echo $description; ?></p>
-			<?php if($total_contacts > 0):?>
-			<ul class="contacts">
-				<?php for($i = 0; $i < $total_contacts; $i++):?>
-				<li>
-					<span class="title"><?php echo $type[$i];?></span><br>
-					<span class="value"><?php echo $contacts[$i];?></li></span>
-				<?php endfor; ?>
-			</ul>
-			<?php endif; ?>
-		</div>
-		<div class="pageimage">
-			<?php $image = wp_get_attachment_image_src($portrait, "page-portrait"); ?> 
-			<img alt="<?php bloginfo('name');?>" src="<?php echo $image[0];?>" />
-		</div>				
-	</article>			
+<div class="side">
+	<div id='area' class="<?php echo $color;?>">
+		<div class="ir shape"></div>
+		<h1 class="name"><?php the_title();?></h1>
+	</div>
+		
 </div>
+<div class="central">
+	<p class="heading"><?php echo $metadescription;?></p>
+	<?php echo wpautop($description); ?>
+	<div class="itemlist">
+		<?php
+		$i = -1;
+		$left = false;
+		foreach($cases_ids as $id => $case_id):
+			$case = get_post($id);
+			$case_info = simple_fields_get_post_group_values($case->ID,"Case Info", true, 1);
+			$case_title = get_the_title($id);
+			$case_metadescription = $case_info['Meta Description'][0];
+			$case_image = wp_get_attachment_image_src($case_info['Featured Image'][0], "thumbnail");
+			$i ++;
+			if($i > 2) $i = 0;
+			if($left) $left = false;
+			else $left = true;
+		?>
+		<article class="item <?php echo $color;?> <?php echo 'color'.$i;?> <?php echo ($left)?'left':'right';?>" style="<?php echo($case_image)?'background-image:url(\''.$case_image[0].'\');':''; ?>" >
+			<a href="<?php echo get_post_permalink($id);?>">
+				<h1><?php echo $case_title;?></h1>
+				<p class="description"><?php echo $case_metadescription;?></p>
+			</a>
+		</article>
+		<?php endforeach;?>
+	</div>
+	
+	
+</div>		
 <?php get_footer(); ?>

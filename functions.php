@@ -40,12 +40,12 @@ function register_cpt_area() {
     register_post_type( 'area', $args );
 }
 // Remove the slug from the custom post types permalink 
-add_filter('post_type_link', 'area_link_filter_function', 1, 3);
+/*add_filter('post_type_link', 'area_link_filter_function', 1, 3);
 function area_link_filter_function( $post_link, $id = 0, $leavename = FALSE ) {
 	if (!is_object($post) || $post->post_type != 'area') {
 		return str_replace('area/', '', $post_link);
 	}
-}
+}*/
 // CASE
 add_action( 'init', 'register_cpt_case' );
 function register_cpt_case() {
@@ -86,12 +86,12 @@ function register_cpt_case() {
     register_post_type( 'case', $args );
 }
 // Remove the slug from the custom post types permalink 
-add_filter('post_type_link', 'case_link_filter_function', 1, 3);
+/*add_filter('post_type_link', 'case_link_filter_function', 1, 3);
 function case_link_filter_function( $post_link, $id = 0, $leavename = FALSE ) {
 	if (!is_object($post) || $post->post_type != 'case') {
 		return str_replace('case/', '', $post_link);
 	}
-}
+}*/
 // Make the Areas become possible parents for the cases ----------------------------
 add_action('admin_menu', function() { remove_meta_box('pageparentdiv', 'case', 'normal');});
 add_action('add_meta_boxes', function() { add_meta_box('case-parent', 'Area', 'case_attributes_meta_box', 'case', 'side', 'high');});

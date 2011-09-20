@@ -38,11 +38,22 @@
   	
   	<script src="<?php bloginfo('stylesheet_directory');?>/js/libs/modernizr-2.0.6.min.js"></script>
 </head>
-<body <?php body_class();?>">
+<?php
+	if(is_single()){
+		$root_id;
+		if($post->post_parent) $root_id = $post->post_parent;
+		else $root_id = get_the_ID();
+		$root_info = simple_fields_get_post_group_values($root_id,"Area Info", true, 1);
+		$root_color = strtolower($root_info['Color'][0]);	
+	}
+?>
+<body class="<?php echo implode(" ", get_body_class());?> <?php if(isset($root_color)) echo $root_color; ?>" >
 	<header id="header">
 		<div class="container">
 			<div class="logo">
-				<h1 class="logotype ir"><?php bloginfo('name'); ?></h1>
+				<a href="<?php bloginfo('url');?>">
+					<h1 class="logotype ir"><?php bloginfo('name'); ?></h1>
+				</a>
 				<p class="description">
 					<?php if (is_home()) :?>
 						<span><?php echo $options['description']; ?></span>
@@ -59,7 +70,7 @@
 					$area_info = simple_fields_get_post_group_values(get_the_ID(),"Area Info", true, 1);
 					$color = strtolower($area_info['Color'][0]);
 					?>
-					<li class="<?php echo $color;?>">						
+					<li class="<?php echo $color;?> <?php if(isset($root_id)):if($root_id==get_the_ID()):echo 'selected';endif;endif;?> ">						
 							<div class="shapes">
 								<?php if (is_home()) :?>
 								<div class="a"></div>
@@ -77,4 +88,4 @@
 		</div>
 	</header>
 	<article id="main" role="main">
-		<div class="container">
+		<div class="container clearfix">
