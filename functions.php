@@ -266,4 +266,13 @@ function settings_plugin_action_links( $links, $file ) {
 	return $links;
 }
 
+
+// DISPLAY  BUILDERS -----------------------------------------------------
+function pb_facebook_like($width, $url){
+?>
+	<div class="fb-like" style="width: <?php echo $width;?>px;">
+		<iframe src="//www.facebook.com/plugins/like.php?app_id=237679169615804&amp;href<?php echo ($url)?"=".$url:"";?>&amp;send=false&amp;layout=standard&amp;width=<?php echo $width;?>&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:<?php echo $width;?>px; height:80px;" allowTransparency="true"></iframe>
+	</div>
+<?php
+}
 ?>

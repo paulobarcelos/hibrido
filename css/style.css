@@ -83,7 +83,7 @@ td { vertical-align: top; }
 ----------------------------------------------------------------------------*/
 
 /* base ---------------------------------------------------------------------- */
-body {font-family: "Georgia", "Times New Roman", serif; font-weight: normal; font-size:14px; line-height:20px; font-style: normal; color:#888; margin:0; background-color: #ddd;}
+body {font-family: "Georgia", "Times New Roman", serif; font-weight: normal; font-size:14px; line-height:20px; font-style: normal; color:#888; margin:0; background-color: #eee;}
 
 body.yellow { background-color: #FFFEDE; }
 body.red { background-color: #FFE1E1; }
@@ -123,10 +123,13 @@ h5 { font-family: Museo-300; font-weight: normal; font-style: normal; }
 	filter:alpha(opacity=0);
 }
 
+.fb-like {margin: 0 auto 0 auto;}
+
 /* HEADER -------------------------------------------------------------------*/
 .ie6 #header {text-align:center;}
-#header {background-color:#F4F4F4; border-bottom: solid 1px #ccc; }
-#header .logo {width: 166px; margin:0; padding:65px 0;}
+#header {background-color:#EEE; border-bottom: solid 1px #ccc; }
+#header .logo {width: 166px; margin:0; padding:65px 0; text-align: center;}
+#header .logo a {text-decoration:none;}
 #header .logotype { width: 166px; height: 29px; background: url('../img/sprites/logos.png') no-repeat -312px 0; margin: 0 0 0px 0;}
 #header .description { font-size: 15px; color: #666; margin: 2px 0 0 0; font-style: italic;}
 #mainnavigation ul { list-style: none; position:absolute; top:20px; width: 802px; margin: 0 0 0 170px;}
@@ -138,6 +141,7 @@ h5 { font-family: Museo-300; font-weight: normal; font-style: normal; }
 .ie7 #mainnavigation li,
 .ie6 #mainnavigation li {display: inline;}
 #mainnavigation li.selected {background-color: #fff;}
+#mainnavigation li a { text-decoration: none;}
 #mainnavigation .link {position:absolute; top: 85px; display: block; width: 100%;  text-align: center; font-family: Museo-500; font-size:17px; line-height:17px; text-decoration:none; color:#333;}
 #mainnavigation .shapes {width: 52px; height: 52px;  background: url('../img/sprites/shapes.png') no-repeat 0 0; margin: 20px auto 0 auto;}
 #mainnavigation .yellow .shapes {background-position: -962px 0;}
@@ -147,7 +151,8 @@ h5 { font-family: Museo-300; font-weight: normal; font-style: normal; }
 
 .home #header {background:none; border:none;}
 .home #header .logo {width: 375px; padding:0; margin: 95px auto 0 auto;}
-.home #header .logotype { width: 303px; height: 54px; background-position: 0 0; margin: 0 auto 38px auto;}
+.home #header p.tagline {font-size: 17px; margin: 0 0 15px 0; font-style: italic;}
+.home #header .logotype { width: 303px; height: 54px; background-position: 0 0; margin: 0 auto 10px auto;}
 .home #header .logotype.red { background-position: 0 -60px; }
 .home #header .logotype.yellow { background-position: 0 -120px; }
 .home #header .logotype.green { background-position: 0 -180px; }
@@ -213,10 +218,10 @@ h5 { font-family: Museo-300; font-weight: normal; font-style: normal; }
 	-webkit-border-radius: 10px 0px 0px 0px;
 }
 
-#main p.text {display:block; width:420px; margin:0 auto 60px auto; text-align: center; font-size: 15px; line-height: 19px;}
+.home p.text {display:block; width:420px; margin:0 auto 20px auto; text-align: center; font-size: 15px; line-height: 19px;}
 
 /* AREA ---------------------------------------------------------------------*/
-#area {width:168px; position: relative;}
+#area {width:168px; position: relative; margin:0 0 20px 0;}
 #area .shape {width:168px; height:168px; background: url('../img/sprites/shapes.png') no-repeat 0 0;}
 #area.yellow .shape {background-position: -1063px 0px;}
 #area.red .shape {background-position: -1063px -240px;}
@@ -252,9 +257,10 @@ a.back:before{ content: "← "; color: #999;}
 p.quote {padding: 0 160px; color:#666; margin:30px 0 25px 0; font-size: 16px; line-height: 19px; text-align: center; font-weight: normal;}
 p.quote .quoteauthor { display:block; color:#888; margin:15px 0 25px 0; font-size: 14px; line-height: 14px; text-align: center; font-weight: normal;}
 .galleryitem {margin: 25px 0;}
+.single-case .heading {margin:0 0 10px 0; }
 
 /* FOOTER -------------------------------------------------------------------*/
-#footer {width: 100%; background-color: #888; padding: 35px 0 25px 0;}
+#footer {width: 100%; background-color: #888; padding: 35px 0 25px 0; margin:30px 0 0 0;}
 #footer .logo {display:block; width: 106px; height: 20px;  background: url('../img/sprites/logos.png') no-repeat -312px -34px; float: left;}
 #footer .contact { float: left; margin:0 0 0 60px; font-family: Museo-300; font-size:16px; line-height:17px; color:#fff;}
 #footer .links { float: right;}

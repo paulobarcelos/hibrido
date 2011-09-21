@@ -7,4 +7,5 @@
 	<div class="outer right"></div>
 </div>
 <p class="text"><?php echo $options['intro']; ?></p>
+<?php pb_facebook_like(300);?>
 <?php get_footer(); ?>

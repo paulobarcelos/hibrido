@@ -24,6 +24,8 @@
 		<p class="heading"><?php echo $metadescription; ?></p>
 	<?php endif;?>
 	
+	<?php pb_facebook_like(300);?>
+	
 	<?php if($featured_image):?>
 		<div class="rounded" style="<?php echo 'background-image:url(\''.$featured_image[0].'\'); width: '.$featured_image[1].'px; height: '.$featured_image[2].'px;'; ?>">
 			<img class="fallbackimage" src="<?php echo $featured_image[0];?>" />

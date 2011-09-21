@@ -12,6 +12,7 @@
 		<div class="ir shape"></div>
 		<h1 class="name"><?php the_title();?></h1>
 	</div>
+	<?php pb_facebook_like(167);?>
 		
 </div>
 <div class="central">

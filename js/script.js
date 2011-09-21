@@ -15,7 +15,7 @@ HIBRIDO.site = new function(){
 	
 	this.init = function(){				
 		colors = new Object()
-		colors.none = '#DDD';	
+		colors.none = '#EEE';	
 		colors.red = '#FFE1E1';
 		colors.yellow = '#FFFEDE';
 		colors.green = '#DFF9D9';
@@ -26,7 +26,7 @@ HIBRIDO.site = new function(){
 		
 		shapes = [];
 		
-		$('#mainnavigation').find('li').each(function(index) {
+		$('#mainnavigation').find('li a').each(function(index) {
 			_this.deselect($(this), true);
 			
 			$(this).children('.shapes').children().each(function(index) {
