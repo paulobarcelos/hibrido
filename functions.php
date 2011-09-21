@@ -93,8 +93,14 @@ function case_link_filter_function( $post_link, $id = 0, $leavename = FALSE ) {
 	}
 }*/
 // Make the Areas become possible parents for the cases ----------------------------
-add_action('admin_menu', function() { remove_meta_box('pageparentdiv', 'case', 'normal');});
-add_action('add_meta_boxes', function() { add_meta_box('case-parent', 'Area', 'case_attributes_meta_box', 'case', 'side', 'high');});
+function remove_meta_box_handler (){
+	remove_meta_box('pageparentdiv', 'case', 'normal');
+}
+function add_meta_box_handler (){
+	add_meta_box('case-parent', 'Area', 'case_attributes_meta_box', 'case', 'side', 'high');
+}
+add_action('admin_menu', 'remove_meta_box_handler');
+add_action('add_meta_boxes', 'add_meta_box_handler');
 function case_attributes_meta_box($post) {
     $post_type_object = get_post_type_object($post->post_type);
 	if ( $post_type_object->hierarchical ) {
