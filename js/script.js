@@ -88,7 +88,7 @@ HIBRIDO.site = new function(){
 		}, duration);
 		
 		var color,
-			colorClass = jQuery.trim(item.attr("class"));
+			colorClass = jQuery.trim(item.parent().attr("class"));
 		switch (colorClass){
 			case 'red':
 				color = colors.red;
@@ -103,7 +103,6 @@ HIBRIDO.site = new function(){
 				color = colors.blue;
 				break;
 		}
-		
 		body.stop(true).delay(duration*2).animate({
 			'backgroundColor' : color	    
 		}, duration*3);
