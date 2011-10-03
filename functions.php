@@ -34,10 +34,14 @@ function register_cpt_area() {
         'has_archive' => true,
         'query_var' => true,
         'can_export' => true,
-        'rewrite' => true,
+        'rewrite' => false,
         'capability_type' => 'post'
     );
     register_post_type( 'area', $args );
+	global $wp_rewrite;
+	$wp_rewrite->add_rewrite_tag("%area%", '([^/]+)', "area=");
+	$wp_rewrite->add_permastruct('area', '%area%', false);
+	flush_rewrite_rules( false );
 }
 // Remove the slug from the custom post types permalink 
 /*add_filter('post_type_link', 'area_link_filter_function', 1, 3);
@@ -80,18 +84,21 @@ function register_cpt_case() {
         'has_archive' => true,
         'query_var' => true,
         'can_export' => true,
-        'rewrite' => true,
+        'rewrite' => false,
         'capability_type' => 'post'
     );
     register_post_type( 'case', $args );
+	global $wp_rewrite;
+	$wp_rewrite->add_rewrite_tag("%case%", '([^/]+)', "case=");
+	$wp_rewrite->add_permastruct('case', '%case%', false);
 }
 // Remove the slug from the custom post types permalink 
-/*add_filter('post_type_link', 'case_link_filter_function', 1, 3);
+add_filter('post_type_link', 'case_link_filter_function', 1, 3);
 function case_link_filter_function( $post_link, $id = 0, $leavename = FALSE ) {
 	if (!is_object($post) || $post->post_type != 'case') {
 		return str_replace('case/', '', $post_link);
 	}
-}*/
+}
 // Make the Areas become possible parents for the cases ----------------------------
 function remove_meta_box_handler (){
 	remove_meta_box('pageparentdiv', 'case', 'normal');
@@ -191,7 +198,7 @@ function settings_render_form() {
 					<td>
 						<textarea name="settings_options[description]" rows="3" cols="50" type='textarea'><?php echo $options['description']; ?></textarea>
 						<br />
-						<span style="color:#666666;margin-left:2px;">Aparecerá embaixo da logo e também na meta-description da home.<br />Use palavras chave pois este conteúdo é muito relevante para SEO.</span>
+						<span style="color:#666666;margin-left:2px;">Aparecerá abaixo da logo e também na meta-description da home.<br />Use palavras chave pois este conteúdo é muito relevante para SEO.</span>
 					</td>
 				</tr>				
 				<!-- Text Area Control -->
@@ -200,7 +207,25 @@ function settings_render_form() {
 					<td>
 						<textarea name="settings_options[intro]" rows="7" cols="50" type='textarea'><?php echo $options['intro']; ?></textarea>
 						<br />
-						<span style="color:#666666;margin-left:2px;">Aparecerá em baio das áreas de atuação na home.</span>
+						<span style="color:#666666;margin-left:2px;">Aparecerá abaixo das áreas de atuação na home.</span>
+					</td>
+				</tr>
+				<!-- Textbox Control -->
+				<tr>
+					<th scope="row">Label dos Clientes</th>
+					<td>
+						<input type="text" size="57" name="settings_options[clients_label]" value="<?php echo $options['clients_label']; ?>" />
+						<br />
+						<span style="color:#666666;margin-left:2px;">Exemplo: "Alguns de nossos clientes:"</span>
+					</td>
+				</tr>
+				<!-- Textbox Control -->
+				<tr>
+					<th scope="row">Logos dos Clientes (ID da image)</th>
+					<td>
+						<input type="text" size="10" name="settings_options[clients_logos]" value="<?php echo $options['clients_logos']; ?>" />
+						<br />
+						<span style="color:#666666;margin-left:2px;">Para encontrar a ID, abra a imagem na "Media Library" e olhe a URL,<br />a ID esterá incluída lá como "attachment_id".<br />Exemplo(a ID é 16): www.hibrido.cc/wp-admin/media.php?attachment_id=16&action=edit</span>
 					</td>
 				</tr>
 				<!-- Textbox Control -->
@@ -214,7 +239,7 @@ function settings_render_form() {
 				</tr>				
 				<!-- Textbox Control -->
 				<tr>
-					<th scope="row">Endreço do Blog</th>
+					<th scope="row">Endereço do Blog</th>
 					<td>
 						<input type="text" size="57" name="settings_options[blog]" value="<?php echo $options['blog']; ?>" />
 					</td>
