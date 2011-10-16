@@ -19,7 +19,7 @@ function register_cpt_area() {
     );
     $args = array( 
         'labels' => $labels,
-        'hierarchical' => true,
+        'hierarchical' => false,
         
         'supports' => array( 'title' ),
         
@@ -34,14 +34,14 @@ function register_cpt_area() {
         'has_archive' => true,
         'query_var' => true,
         'can_export' => true,
-        'rewrite' => false,
+        'rewrite' => false,//array('slug'=>'circulo','with_front'=>false),
         'capability_type' => 'post'
     );
     register_post_type( 'area', $args );
 	global $wp_rewrite;
 	$wp_rewrite->add_rewrite_tag("%area%", '([^/]+)', "area=");
 	$wp_rewrite->add_permastruct('area', '%area%', false);
-	flush_rewrite_rules( false );
+	//flush_rewrite_rules( false );
 }
 // Remove the slug from the custom post types permalink 
 /*add_filter('post_type_link', 'area_link_filter_function', 1, 3);
@@ -64,7 +64,7 @@ function register_cpt_case() {
         'search_items' => _x( 'Search Cases', 'case' ),
         'not_found' => _x( 'No cases found', 'case' ),
         'not_found_in_trash' => _x( 'No cases found in Trash', 'case' ),
-        'parent_item_colon' => _x( 'Parent Case:', 'case' ),
+        'parent_item_colon' => _x( 'Parent Circulo:', 'case' ),
         'menu_name' => _x( 'Cases', 'case' ),
     );
     $args = array( 
@@ -84,21 +84,21 @@ function register_cpt_case() {
         'has_archive' => true,
         'query_var' => true,
         'can_export' => true,
-        'rewrite' => false,
+        'rewrite' => array('slug'=>'case','with_front'=>false),
         'capability_type' => 'post'
     );
     register_post_type( 'case', $args );
-	global $wp_rewrite;
-	$wp_rewrite->add_rewrite_tag("%case%", '([^/]+)', "case=");
-	$wp_rewrite->add_permastruct('case', '%case%', false);
+	//global $wp_rewrite;
+	//$wp_rewrite->add_rewrite_tag("%case%", '([^/]+)', "case=");
+	//$wp_rewrite->add_permastruct('case', '%case%', false);
 }
 // Remove the slug from the custom post types permalink 
-add_filter('post_type_link', 'case_link_filter_function', 1, 3);
+/*add_filter('post_type_link', 'case_link_filter_function', 1, 3);
 function case_link_filter_function( $post_link, $id = 0, $leavename = FALSE ) {
 	if (!is_object($post) || $post->post_type != 'case') {
 		return str_replace('case/', '', $post_link);
 	}
-}
+}*/
 // Make the Areas become possible parents for the cases ----------------------------
 function remove_meta_box_handler (){
 	remove_meta_box('pageparentdiv', 'case', 'normal');
