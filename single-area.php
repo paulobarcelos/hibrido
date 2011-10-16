@@ -26,7 +26,7 @@
 			$case = get_post($id);
 			$case_info = simple_fields_get_post_group_values($case->ID,"Case Info", true, 1);
 			$case_title = get_the_title($id);
-			$case_metadescription = $case_info['Meta Description'][0];
+			$case_microdescription = $case_info['Micro Description'][0];
 			$case_image = wp_get_attachment_image_src($case_info['Featured Image'][0], "thumbnail");
 			$i ++;
 			if($i > 2) $i = 0;
@@ -36,7 +36,7 @@
 		<article class="item <?php echo $color;?> <?php echo 'color'.$i;?> <?php echo ($left)?'left':'right';?>" style="<?php echo($case_image)?'background-image:url(\''.$case_image[0].'\');':''; ?>" >
 			<a href="<?php echo get_post_permalink($id);?>">
 				<h1><?php echo $case_title;?></h1>
-				<p class="description"><?php echo $case_metadescription;?></p>
+				<p class="description"><?php echo $case_microdescription;?></p>
 			</a>
 		</article>
 		<?php endforeach;?>
