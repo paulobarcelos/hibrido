@@ -111,12 +111,31 @@ add_action('add_meta_boxes', 'add_meta_box_handler');
 function case_attributes_meta_box($post) {
     $post_type_object = get_post_type_object($post->post_type);
 	if ( $post_type_object->hierarchical ) {
-		$pages = wp_dropdown_pages(array('post_type' => 'area', 'selected' => $post->post_parent, 'name' => 'parent_id', 'show_option_none' => __('(no parent)'), 'sort_column'=> 'menu_order, post_title', 'echo' => 0));
+		/*$pages = wp_dropdown_pages(array(
+			'post_type' => 'area',
+			'selected' => $post->post_parent,
+			'name' => 'parent_id',
+			'show_option_none' => __('(no parent)'),
+			'sort_column'=> 'menu_order,post_title',
+			'echo' => 0
+		));
+
+		wp_dropdown_pages();
 		if ( ! empty($pages) ) {
 			echo $pages;
-		}
+		}*/
+		// <----------------------------------------------------------- Dirty fix to the wierd problem that made wp_dropdown_pages stop working
+		$current_parrent_id = $post->post_parent;
+		$loop = new WP_Query( array( 'post_type' => 'area' ) );
+		echo '<select name="post_parent">';
+		while ( $loop->have_posts() ) : $loop->the_post();
+			 echo '<option value="'.get_the_id().'"  '. (($current_parrent_id == get_the_id()) ? 'selected' : '' ) .' >' . get_the_title() . '</option>';
+		endwhile;
+		echo '</select>';
+		wp_reset_query(); 
 	}
 }
+
 // CUSTOM IMAGE SIZES --------------------------------------------------------------
 if ( function_exists( 'add_image_size' ) ) { 
 	add_image_size( 'thumbnail', 350, 196, true ); //(cropped)
