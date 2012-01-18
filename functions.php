@@ -126,13 +126,13 @@ function case_attributes_meta_box($post) {
 		}*/
 		// <----------------------------------------------------------- Dirty fix to the wierd problem that made wp_dropdown_pages stop working
 		$current_parrent_id = $post->post_parent;
-		$loop = new WP_Query( array( 'post_type' => 'area' ) );
+		$posts = get_posts ( array( 'post_type' => 'area' ) );
 		echo '<select name="post_parent">';
-		while ( $loop->have_posts() ) : $loop->the_post();
-			 echo '<option value="'.get_the_id().'"  '. (($current_parrent_id == get_the_id()) ? 'selected' : '' ) .' >' . get_the_title() . '</option>';
-		endwhile;
+			echo '<option>Choose a parent Area</parent>';
+		foreach ($posts as $area_post) {
+			echo '<option value="'.$area_post->ID.'"  '. (($current_parrent_id == $area_post->ID) ? 'selected' : '' ) .' >' . get_the_title($area_post->ID) . '</option>';
+		}
 		echo '</select>';
-		wp_reset_query(); 
 	}
 }
 
