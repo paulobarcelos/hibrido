@@ -135,6 +135,14 @@ function case_attributes_meta_box($post) {
 		echo '</select>';
 	}
 }
+/**
+* Fix for Simple Fields losing the insert image button on media gallery after WP 3.3
+**/
+add_filter( 'get_media_item_args', 'force_send' );
+function force_send($args){
+	$args['send'] = true;
+	return $args;
+}
 
 // CUSTOM IMAGE SIZES --------------------------------------------------------------
 if ( function_exists( 'add_image_size' ) ) { 
@@ -160,7 +168,7 @@ function remove_recent_comments_style() {
     remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );  
 }  
 // Customize media upload tabs --------------------------------------------------
-add_filter( 'media_upload_tabs', 'custom_media_upload_tabs');
+/*add_filter( 'media_upload_tabs', 'custom_media_upload_tabs');
 add_filter( 'media_upload_default_tab', 'custom_media_upload_default_tab');
 function custom_media_upload_tabs($arr_tabs) {
 	if ( (isset($_GET["simple_fields_action"]) || isset($_GET["simple_fields_action"]) ) && ($_GET["simple_fields_action"] == "select_file" || $_GET["simple_fields_action"] == "select_file_for_tiny") ) {
@@ -171,7 +179,7 @@ function custom_media_upload_tabs($arr_tabs) {
 function custom_media_upload_default_tab($tab) {
 	$tab = 'library';
 	return $tab;
-}
+}*/
 // OPTIONS -------------------------------------------------------------------------------
 add_action('admin_init', 'settings_init' );
 add_action('admin_menu', 'settings_add_options_page');
@@ -272,6 +280,20 @@ function settings_render_form() {
 				</tr>
 				<!-- Textbox Control -->
 				<tr>
+					<th scope="row">Facebook App ID</th>
+					<td>
+						<input type="text" size="57" name="settings_options[facebook_app_id]" value="<?php echo $options['facebook_app_id']; ?>" />
+					</td>
+				</tr>
+				<!-- Textbox Control -->
+				<tr>
+					<th scope="row">Facebook Admins</th>
+					<td>
+						<input type="text" size="57" name="settings_options[facebook_admins]" value="<?php echo $options['facebook_admins']; ?>" />
+					</td>
+				</tr>
+				<!-- Textbox Control -->
+				<tr>
 					<th scope="row">Página no Twitter</th>
 					<td>
 						<input type="text" size="57" name="settings_options[twitter]" value="<?php echo $options['twitter']; ?>" />
@@ -313,9 +335,11 @@ function settings_plugin_action_links( $links, $file ) {
 
 // DISPLAY  BUILDERS -----------------------------------------------------
 function pb_facebook_like($width, $url = false){
+	$options = get_option('settings_options');
+	if(!$url) $url = $options['facebook'];
 ?>
 	<div class="fb-like" style="width: <?php echo $width;?>px;">
-		<iframe src="//www.facebook.com/plugins/like.php?app_id=237679169615804&amp;href<?php echo ($url)?"=".$url:"";?>&amp;send=false&amp;layout=standard&amp;width=<?php echo $width;?>&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:<?php echo $width;?>px; height:80px;" allowTransparency="true"></iframe>
+		<iframe src="//www.facebook.com/plugins/like.php?app_id=<?php echo $options['facebook_app_id'];?>&amp;href<?php echo ($url)?"=".$url:"";?>&amp;send=false&amp;layout=standard&amp;width=<?php echo $width;?>&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:<?php echo $width;?>px; height:80px;" allowTransparency="true"></iframe>
 	</div>
 <?php
 }
