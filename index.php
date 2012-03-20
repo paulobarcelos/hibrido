@@ -8,9 +8,12 @@
 </div>
 <p class="text"><?php echo $options['intro']; ?></p>
 <?php pb_facebook_like(300);?>
-<p class="clientslabel"><?php echo $options['clients_label']; ?></p>
-<?php $clients_logos = wp_get_attachment_image_src($options['clients_logos'], "full");?>
-<div class="clientslogos">
-	<img src="<?php echo $clients_logos[0];?>" />
-</div>
+
+<?php if($options['clients_logos']):?>
+	<p class="clientslabel"><?php echo $options['clients_label']; ?></p>
+	<?php $clients_logos = wp_get_attachment_image_src($options['clients_logos'], "full");?>
+	<div class="clientslogos">
+		<img src="<?php echo $clients_logos[0];?>" />
+	</div>
+<?php endif;?>
 <?php get_footer(); ?>

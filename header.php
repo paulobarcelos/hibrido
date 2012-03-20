@@ -20,6 +20,8 @@
 	$META_IMAGE = get_bloginfo('stylesheet_directory')."/img/hibrido.png";
 	$META_SITE_NAME = $options['site_title'];
 	$META_AUTHOR = "Paulo Barcelos";
+	$META_FB_APP_ID = $options['facebook_app_id'];
+	$META_FB_ADMINS = $options['facebook_admins'];
 	
 	if (is_home()): 
 		$META_URL = get_bloginfo('url');
@@ -53,6 +55,8 @@
     <?php if(!empty($META_IMAGE)):?><meta property="og:image" content="<?php echo $META_IMAGE;?>"><?php endif;?>
     <?php if(!empty($META_SITE_NAME)):?><meta property="og:site_name" content="<?php echo $META_SITE_NAME;?>"><?php endif;?>
     <?php if(!empty($META_DESCRIPTION)):?><meta property="og:description" content="<?php echo $META_DESCRIPTION;?>"><?php endif;?>
+    <?php if(!empty($META_FB_APP_ID)):?><meta property="fb:app_id" content="<?php echo $META_FB_APP_ID;?>"><?php endif;?>
+    <?php if(!empty($META_FB_ADMINS)):?><meta property="fb:admins" content="<?php echo $META_FB_ADMINS;?>"><?php endif;?>
   	
   	<?php if(!empty($META_AUTHOR)):?><meta name="author" content="<?php echo $META_AUTHOR;?>"><?php endif;?>
   	<meta name="viewport" content="width=device-width,initial-scale=1">
